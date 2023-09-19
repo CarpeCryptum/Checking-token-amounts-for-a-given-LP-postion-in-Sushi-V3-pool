@@ -29,7 +29,7 @@ def getprice(addr, abi):
     denmr = 2**192
     sqr_ratio = nmr / denmr
     tick_ratio = 1.0001**tick
-    return sqr_ratio*shift, tick_ratio*shift
+    return sqr_ratio, tick_ratio
 def getamount(addr, abi, ID):
     contract = w3.eth.contract(address=addr, abi=abi)
     amountdata = contract.functions.positions(ID).call()
@@ -41,6 +41,6 @@ def getamount(addr, abi, ID):
     currentPrice=(getprice(addr_pool, getabi(addr_pool))[0])/shift
     amount0=liquidity*((math.sqrt(priceUpper)-math.sqrt(currentPrice))/(math.sqrt(currentPrice)*math.sqrt(priceUpper)))
     amount1=liquidity*(math.sqrt(currentPrice)-math.sqrt(priceLower))
-    return currentPrice, amount0/(10**(token0_decimals)), amount1/(10**(token1_decimals))
+    return currentPrice, amount0, amount1
 
 getamount(addr_Pos_Manager, getabi(addr_Pos_Manager), position_NFT_ID)  
