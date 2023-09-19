@@ -36,9 +36,9 @@ def getamount(addr, abi, ID):
     liquidity = float(amountdata[7])
     tickUpper = float(amountdata[6])
     tickLower = float(amountdata[5])
-    priceUpper=(1.0001**tickUpper)/shift
-    priceLower=(1.0001**tickLower)/shift
-    currentPrice=(getprice(addr_pool, getabi(addr_pool))[0])/shift
+    priceUpper=(1.0001**tickUpper)
+    priceLower=(1.0001**tickLower)
+    currentPrice=(getprice(addr_pool, getabi(addr_pool))[0])
     amount0=liquidity*((math.sqrt(priceUpper)-math.sqrt(currentPrice))/(math.sqrt(currentPrice)*math.sqrt(priceUpper)))
     amount1=liquidity*(math.sqrt(currentPrice)-math.sqrt(priceLower))
     return currentPrice, amount0, amount1
