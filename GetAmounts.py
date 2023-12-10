@@ -10,15 +10,15 @@ w3 = Web3(Web3.HTTPProvider(url))
 addr_Pos_Manager='address of the NonfungiblePositionManager contract on the given chain'
 addr_pool='addrerss of the pool in which the LP is'
 position_NFT_ID= >the ID number of the NFT token<
-token0_decimals=18 #or what the nuber is for the given token
-token1_decimals=18 #or what the nuber is for the given token
+token0_decimals=18 #or what the number is for the given token
+token1_decimals=18 #or what the number is for the given token
 shift=10**(token0_decimals-token1_decimals)
 
 
 def getabi(addr):
     page = requests.get('https://api.arbiscan.io/api?module=contract&action=getabi&address=' + addr + '&apikey=' + key + '')
     data = page.json()['result']
-    return data
+    return data #can also just copy/paste the contract abi from the block explorer
 
 def getprice(addr, abi):
     contract = w3.eth.contract(address=addr, abi=abi)
